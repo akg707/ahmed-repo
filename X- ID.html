@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+  <meta charset="UTF-8">
+  <title>مولد رابط DM في تويتر</title>
+</head>
+<body style="direction: rtl; font-family: Arial; padding: 30px;">
+  <h2> مرحبا SMU Team 💙 </h2>
+  <h2>🎯 صانع رابط DM مباشر لتويتر</h2>
+
+  <label>أدخل اسم المستخدم (بدون @):</label><br>
+  <input type="text" id="username" placeholder="مثال: jack" style="width: 300px;"><br><br>
+  <button onclick="openHelper()">🔎 افتح موقع استخراج الـ ID</button><br><br>
+
+  <label>أو أدخل الـ User ID مباشرة:</label><br>
+  <input type="text" id="userid" placeholder="مثال: 123456789" style="width: 300px;"><br><br>
+  <button onclick="generateDM()">📩 أنشئ رابط DM مباشر</button>
+
+  <div id="output" style="margin-top: 30px;"></div>
+
+  <script>
+    function openHelper() {
+      const username = document.getElementById("username").value.trim();
+      if (!username) {
+        alert("فضلاً أدخل اسم المستخدم أولاً");
+        return;
+      }
+      const helperURL = "https://tweethunter.io/twitter-id-converter?username=" + encodeURIComponent(username);
+      window.open(helperURL, "_blank");
+    }
+
+    function generateDM() {
+      const userId = document.getElementById("userid").value.trim();
+      if (!userId || isNaN(userId)) {
+        alert("فضلاً أدخل رقم ID صحيح");
+        return;
+      }
+      const dmLink = "https://twitter.com/messages/compose?recipient_id=" + userId;
+      document.getElementById("output").innerHTML = `
+        ✅ رابط DM المباشر:<br><br>
+        <a href="${dmLink}" target="_blank">${dmLink}</a>
+      `;
+    }
+  </script>
+</body>
+</html>
